@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block content %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Team Name</th>
+        </tr>
+        {% for team in teams %}
+            <tr>
+                <td>{{ team.id }}</td>
+                <td>{{ team.teamname }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

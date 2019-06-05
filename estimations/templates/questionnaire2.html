@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% block content %}
+
+    <h1>מלא שאלון - {{ title }}</h1>
+    <hr/>
+    <div class="warning">
+        שימו לב!
+    מהרגע ששלחתם את השאלון, אי אפשר למלא אותו שוב.
+    כמו כן, שימו לב שעניתם על כל הסעיפים האפשריים.
+    </div>
+    <hr/>
+    <form id="myform" action="" method="post" onsubmit="return handleSubmit()">
+        {% for question in questions %}
+            <h4> {{ question.question_title }}</h4>
+            {% if question.is_open_question %}
+                <div class="open-question">
+                    <input type="text" maxlength="200" id="{{ question.question_title }}" name="{{ question.id }}">
+                </div>
+            {% else %}
+                {% for i in range(question.question_min_value,question.question_max_value) %}
+                    <div class="question-radio-div">
+                        <input class="question-radio" type="radio" value="{{ i }}" id="{{ question.question_title }}" name="{{ question.id }}"/>
+                        {{ i }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        <br/><br/>
+        <hr/>
+        <button type="submit" name="submit" id="submit">שלח</button>
+    </form>
+
+    <script>
+        function submit(questionnaire_id) {
+            let jsonQuestionnaire = {};
+            alert("Submitted!");
+            let inputElements = document.getElementsByClassName("question-radio");
+            alert(inputElements.length);
+            for(let i=0; i < inputElements.length; i++){
+                if(inputElements[i].checked){
+                    alert(inputElements[i].value);
+                    jsonQuestionnaire[inputElements[i].name] = inputElements[i].value;
+                }
+            }
+            let url = "";
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST",url,true);
+            xhr.setRequestHeader("Content-Type","application/json");
+            let data = JSON.stringify(jsonQuestionnaire);
+            xhr.send(data);
+        }
+
+        function checkButtons() {
+            let inputElements = document.getElementsByClassName("question-radio");
+            let isValid = true;
+            let questions = {};
+
+            for(let i=0; i < inputElements.length; i++) {
+                questions[inputElements[i].id] = 0;
+            }
+            for(let i=0; i < inputElements.length; i++){
+                if(inputElements[i].checked){
+                    questions[inputElements[i].id] = 1;
+                }
+            }
+            alert(JSON.stringify(questions));
+            for(let key in questions){
+                 if ( questions[key] === 0){
+                    alert(key+" isnt submitted properly!");
+                    isValid = false;
+                }
+            }
+            return isValid
+        }
+        function handleSubmit(){
+            return checkButtons();
+        }
+
+    </script>
+{% endblock content %}

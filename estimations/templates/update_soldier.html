@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>עדכן משתמש</h1>
+    <form method="POST" action=" ">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            {{ form.military_id.label() }}
+            {% if form.military_id.errors %}
+                    {{ form.military_id() }}
+                    <div>
+                        {% for error in form.military_id.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+            {% else %}
+                    {{ form.military_id() }}
+            {% endif %}
+        </fieldset>
+        <fieldset>
+            {{ form.username.label() }}
+            {% if form.username.errors %}
+                {{ form.username() }}
+                <div>
+                    {% for error in form.username.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.username() }}
+            {% endif %}
+        </fieldset>
+        <fieldset>
+            {{ form.level.label() }}
+            {% if form.level.errors %}
+                {{ form.level() }}
+                <div>
+                    {% for error in form.level.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            {% else %}
+                {{ form.level() }}
+            {% endif %}
+        </fieldset>
+        <fieldset>
+            {{ form.team.label() }}
+            {{ form.team() }}
+        </fieldset>
+        {{ form.submit() }}
+    </form>
+{% endblock content %}

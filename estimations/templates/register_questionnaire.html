@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>נהל שאלונים</h1>
+    <button id="myBtn">הוסף שאלון</button>
+    <button id="myBtn2">הוסף שאלה</button>
+
+<!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+            <form method="POST" action=" ">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    {{ form.questionnaire_name.label() }}
+                    {% if form.questionnaire_name.errors %}
+                                {{ form.questionnaire_name() }}
+                                <div>
+                                    {% for error in form.questionnaire_name.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.questionnaire_name() }}
+                            {% endif %}
+                </fieldset>
+                {{ form.submit_questionnaire() }}
+
+            </form>
+      </div>
+
+    </div>
+    <div id="myModal2" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+          <form method="POST" action=" ">
+                {{ form2.hidden_tag() }}
+                <fieldset>
+                    {{ form2.question_title.label() }}
+                    {% if form2.question_title.errors %}
+                                {{ form2.question_title() }}
+                                <div>
+                                    {% for error in form2.question_title.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form2.question_title() }}
+                            {% endif %}
+                </fieldset>
+              <fieldset>
+                    {{ form2.question_min_value.label() }}
+                    {% if form2.question_min_value.errors %}
+                                {{ form2.question_min_value() }}
+                                <div>
+                                    {% for error in form2.question_min_value.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form2.question_min_value() }}
+                            {% endif %}
+                </fieldset>
+              <fieldset>
+                    {{ form2.question_max_value.label() }}
+                    {% if form2.question_max_value.errors %}
+                                {{ form2.question_max_value() }}
+                                <div>
+                                    {% for error in form2.question_max_value.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form2.question_max_value() }}
+                            {% endif %}
+                </fieldset>
+              <fieldset>
+                    {{ form2.questionnaire.label() }}
+                    {% if form2.questionnaire.errors %}
+                                {{ form2.questionnaire() }}
+                                <div>
+                                    {% for error in form2.questionnaire.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form2.questionnaire() }}
+                            {% endif %}
+                </fieldset>
+                {{ form2.submit_question() }}
+            </form>
+
+      </div>
+
+    </div>
+    <script>
+// Get the modal
+        var modal = document.getElementById('myModal');
+        var modal2 = document.getElementById('myModal2');
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        var btn2 = document.getElementById("myBtn2");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var span2 = document.getElementsByClassName("close")[1];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+        };
+        btn2.onclick = function() {
+          modal2.style.display = "block";
+        };
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        };
+        span2.onclick = function() {
+          modal2.style.display = "none";
+        };
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal || event.target == modal2) {
+            modal.style.display = "none";
+            modal2.style.display = "none"
+          }
+        }
+
+
+    </script>
+    {% block questions_db %}{% endblock questions_db %}
+{% endblock content %}

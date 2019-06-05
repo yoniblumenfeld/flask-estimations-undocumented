@@ -1,0 +1,40 @@
+{% extends "register_questionnaire.html" %}
+{% block questions_db %}
+    <hr/>
+    <form action=" " method="POST" style="margin-top: 5px">
+        {{ filter_form.hidden_tag() }}
+
+        <fieldset>
+            {{ filter_form.question_filter_title.label() }}
+            {{ filter_form.question_filter_title() }}
+        </fieldset>
+        <fieldset>
+            {{ filter_form.questionnaire_filter.label() }}
+            {{ filter_form.questionnaire_filter() }}
+        </fieldset>
+        {{ filter_form.submit_filter() }}
+    </form>
+
+    <hr/>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Question Title</th>
+            <th>Question Min Value</th>
+            <th>Question Max Value</th>
+            <th>Questionnaire Name</th>
+            <th>Edit</th>
+        </tr>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.question_title }}</td>
+                <td>{{ question.question_min_value }}</td>
+                <td>{{ question.question_max_value }}</td>
+                <td>{{ question.questionnaire.questionnaire_name }}</td>
+                <td><button><a href="{{ url_for("update_question",question_id=question.id)}}">Update</a></button><button><a href="{{ url_for("delete_question",question_id=question.id)}}">Delete</a></button></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

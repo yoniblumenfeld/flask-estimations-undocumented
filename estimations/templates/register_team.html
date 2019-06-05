@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>הוסף צוותים</h1>
+    <form method="POST" action=" ">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            {{ form.teamname.label() }}
+            {% if form.teamname.errors %}
+                        {{ form.teamname() }}
+                        <div>
+                            {% for error in form.teamname.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.teamname() }}
+                    {% endif %}
+        </fieldset>
+        {{ form.submit() }}
+    </form>
+{% endblock content %}

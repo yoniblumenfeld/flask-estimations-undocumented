@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>התחבר</h1>
+    <form method="POST" action=" ">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            {{ form.military_id.label() }}
+            {{ form.military_id() }}
+        </fieldset>
+        {{ form.submit() }}
+    </form>
+{% endblock content %}

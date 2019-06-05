@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ title }} מלא שאלון </h1>
+    {% for i in range(forms_len) %}
+        <form action="" method="POST">
+            {{ forms[i].hidden_tag() }}
+            <h4>{{ forms[i].question_title(disabled="disabled",style="width: 100%; text-align: center") }}</h4>
+            <fieldset hidden="hidden">
+                {{ forms[i].question_id.label() }}
+                {% if forms[i].question_id.errors %}
+                    {{ forms[i].question_id() }}
+                    <div>
+                        {% for error in forms[i].question_id.errors %}
+                            <span class="error-message">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ forms[i].question_id() }}
+                {% endif %}
+
+            </fieldset>
+            <fieldset style="border: black dashed 1px; width: 100%; text-align: right">
+                {{ forms[i].question_value.label(id="question label"+i|string) }}
+                {% if forms[i].question_value.errors %}
+                    {{ forms[i].question_value(id="question value"+i|string,class="question") }}
+                    <div>
+                        {% for error in forms[i].question_value.errors %}
+                            <span class="error-message">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ forms[i].question_value(id="question value"+i|string,class="question") }}
+                {% endif %}
+            </fieldset>
+            {% if i == forms_len-1 %}
+                {{ forms[i].submit_question() }}
+            {% endif %}
+        </form>
+        <script>
+            function handleQuestionnaireChoice(event) {
+                alert(event.targetName)
+            }
+
+            function handleSubmit() {
+                let questions = document.getElementsByClassName("question");
+                questions.forEach((question) => {
+                    let children = question.children;
+                    children.forEach((child) => {
+                        child.children.forEach((element) => {
+                            if (element[0].checked) {
+                                alert("Found checked " + element[0].id);
+                            }
+                        });
+                    });
+
+                })
+            }
+        </script>
+    {% endfor %}
+{% endblock content %}

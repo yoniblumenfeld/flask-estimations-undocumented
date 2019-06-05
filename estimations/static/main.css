@@ -1,0 +1,122 @@
+.navbar {
+    background-color: lightblue;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    background-size: contain;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.question-radio:hover{
+    background-color:greenyellow;
+    padding: 2px;
+}
+.question-radio {
+    color: red;
+}
+.site_content {
+    margin: auto;
+    width: 50%;
+}
+
+.warning {
+    padding: 10px;
+    border: dashed 1px black;
+    background-color: #f5ff00;
+}
+.error-message{
+    padding: 2px;
+    border: dotted 1px black;
+    background-color: #ff5c4c;
+}
+
+.error-message:hover{
+    color: whitesmoke;
+}
+
+ul {
+   list-style-type: none;
+}
+
+.info-blue{
+    font-style: italic;
+    background-color: cornflowerblue;
+    border: dotted 1px;
+}
+.info-lightblue{
+    font-style: italic;
+    background-color: lightblue;
+    border: dotted 1px;
+}
+.info-lightcyan{
+    font-style: italic;
+    background-color: lightcyan;
+    border: dotted 1px;
+}
+
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body {
+  background: #fafafa;
+  color: #333333;
+  margin-top: 1rem;
+  font-family: "Segoe UI","Arial Rounded MT Bold",SansSerif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #444444;
+}
+
+table {
+  margin-top: 5px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

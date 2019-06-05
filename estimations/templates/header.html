@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}">
+    {% block head %}{% endblock head %}
+</head>
+<body style="direction: rtl;">
+    <header>
+        <nav>
+            {% if current_user.is_authenticated %}
+                <div class="navbar">
+                    {% if current_user.level == 0 %}
+                        {% for questionnaire in questionnaires  %}
+                            <a href="{{ url_for("questionnaire",questionnaire_id=questionnaire.id) }}">{{ questionnaire.questionnaire_name }}</a>
+                        {% endfor %}
+                    {% endif %}
+                    {% if current_user.level == 1 %} <!-- Change to current_user.level == 1 for restricted access !-->
+                        <a href="{{ url_for('register_soldier') }}">רשום חיילים</a>
+                        <a href="{{ url_for('register_team') }}">רשום צוותים</a>
+                        <a href="{{ url_for('manage_questionnaires') }}">נהל שאלונים</a>
+                        <a href="{{ url_for('manage_soldiers') }}">נהל חיילים</a>
+                        <a href="{{ url_for('manage_teams') }}">נהל צוותים</a>
+                        <a href="{{ url_for('statistics') }}">סטטיסטיקה</a>
+                    {% endif %}
+                    <a href="{{ url_for('logout') }}">התנתק</a>
+                    <b>{{ current_user.username }}</b>
+                </div>
+            {% endif %}
+        </nav>
+    </header>
+    <script type="text/javascript" src="{{ url_for('static',filename='main.js') }}"></script>
+    <div class="site_content">
+        {% block layout_content %}{% endblock layout_content %}
+    </div>
+</body>
+</html>

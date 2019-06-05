@@ -1,0 +1,14 @@
+{% extends "header.html" %}
+{% block layout_content %}
+    {% block content %}{% endblock content %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %}
+                <p>
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock layout_content %}
+

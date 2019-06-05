@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+        <form method="POST" action=" ">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    {{ form.question_title.label() }}
+                    {% if form.question_title.errors %}
+                                {{ form.question_title() }}
+                                <div>
+                                    {% for error in form.question_title.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.question_title() }}
+                            {% endif %}
+                </fieldset>
+              <fieldset>
+                    {{ form.question_min_value.label() }}
+                    {% if form.question_min_value.errors %}
+                                {{ form.question_min_value() }}
+                                <div>
+                                    {% for error in form.question_min_value.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.question_min_value() }}
+                            {% endif %}
+                </fieldset>
+              <fieldset>
+                    {{ form.question_max_value.label() }}
+                    {% if form.question_max_value.errors %}
+                                {{ form.question_max_value() }}
+                                <div>
+                                    {% for error in form.question_max_value.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.question_max_value() }}
+                            {% endif %}
+                </fieldset>
+              <fieldset>
+                    {{ form.questionnaire.label() }}
+                    {% if form.questionnaire.errors %}
+                                {{ form.questionnaire() }}
+                                <div>
+                                    {% for error in form.questionnaire.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.questionnaire() }}
+                            {% endif %}
+                </fieldset>
+                {{ form.submit_question() }}
+            </form>
+
+{% endblock %}

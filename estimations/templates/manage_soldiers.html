@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form action="" method="POST" style="margin-top: 5px">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            {{ form.team.label() }}
+            {{ form.team() }}
+        </fieldset>
+        <fieldset>
+            {{ form.username.label() }}
+            {{ form.username() }}
+        </fieldset>
+        <fieldset>
+            {{ form.level.label() }}
+            {{ form.level() }}
+        </fieldset>
+        {{ form.submit() }}
+    </form>
+    <h3 id="teamname">Showing Soldiers In Team {{ teamname }}</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Military ID</th>
+            <th>Username</th>
+            <th>User Permission Level</th>
+            <th>Soldier Team Name</th>
+            <th>Edit</th>
+        </tr>
+        {% for soldier in soldiers %}
+            <tr>
+                <td>{{ soldier.id }}</td>
+                <td>{{ soldier.military_id }}</td>
+                <td>{{ soldier.username }}</td>
+                <td>{{ soldier.level }}</td>
+                <td>{{ soldier.team.teamname }}</td>
+                <td><button><a href="{{ url_for("update_soldier",soldier_id=soldier.id)}}">Update</a></button><button><a href="{{ url_for("delete_soldier",soldier_id=soldier.id) }}">Delete</a></button></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
